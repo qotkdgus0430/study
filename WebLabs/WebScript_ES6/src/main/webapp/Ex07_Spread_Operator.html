@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*  
+			Spread Operator
+			>>펼침 연산자 (복제 기능)
+		
+			특정객체 or 배열값을 >> 다른객체 or 배열로 복제 하거나 옭길때 편하게 사용
+		
+	        연산자:  ...		
+		*/
+		const obj = {       //JSON 객체
+	        		a:10,
+	        		b:20
+	        };
+			
+		let newObj = {...obj}; // 펼침 연산자 복제
+		console.log(newObj);
+		
+		const arr = [1,2,3];
+		let newArr = [...arr];
+		
+		console.log(newArr);
+		
+		//배열 , 객체 , 문자열 요소를 분해하거나 합치는 데 활용
+		const arr3 = [1,2,3];
+		const arr4 = [4,5,6];
+		
+		const combinedArray = [...arr3,...arr4]; // [1,2,3,4,5,6]
+		console.log(combinedArray);
+		 	
+		const arr5 = [1,2,3];
+		const newArray = [10,...arr5,40,50];
+		console.log(newArray); //[10, 1, 2, 3, 40, 50]
+		
+		
+		//객체 적용하기
+		const obj3 = {name:"길동"};
+		const obj4 = {age:25};
+		
+		const combineObj = {...obj3 , ...obj4};
+		//combineObj = {name:"길동" , age:20};
+		
+		
+		const person = {name:"김유신" ,  age:40};
+		//추가적인 데이터를 가지고 객체 생성
+		const updatePerson = {...person, city:"seoul"};
+		console.log(updatePerson);
+		
+		
+	     let user = {
+	      name:"길동",
+	      age:21,
+	      city:"busan",
+	     }
+
+	     //user 객체의 age속성의 값을 10으로 변경한 객체를 하나 생성
+	     //단 조건 spread Operator 연산자 사용
+	     // ... 연산자 기존 있는  속성 : overwrite   .. 없는 속성 : append
+	     
+	     let user2 = {...user,age:20,hobby:"aa"};  //age:20 > overwrite   .  hobby:"aa" > append
+	     console.log(user2);
+	     
+	</script>
+</head>
+<body>
+
+</body>
+</html>

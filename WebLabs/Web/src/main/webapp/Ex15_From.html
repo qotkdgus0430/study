@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	개발자 필수 태그
+	
+	메모장 : 회원가입
+	       로그인 
+	       
+ -->
+ <form action="Ex15_ok.jsp" method="post">
+ 	ID:  <input type="text"     name="userid"><br>
+ 	PWD: <input type="password" name="userpwd"><br>
+ 	<input type="submit" value="전송하기">
+ 	<input type="reset"  value="입력값 초기화">
+ </form>
+ 
+ <hr>
+ <a href="http://localhost:8090/Web/Ex15_ok.jsp?userid=kkkk&userpwd=2222">링크클릭(GET)</a>
+ <!-- 
+ 	form 전송을 담당하는 태그 (클라이언트 입력한 데이터를 가지고 목적지 배송)
+ 	
+ 	form  운송수단(전송)
+ 	1. action="목적지 주소"  >> JSP     >>action="Ex15_ok.jsp"
+ 	                      >> Servlet >>action="Ex15_ok.do"
+ 	                      
+ 	2. method="전송방식"   배를 타고 , 비행기 타고
+ 	2.1 method="get"     Ex15_ok.jsp?userid=hong&userpwd=1004   
+ 	서버 페이지에서는  
+ 	String uid=request.getParameter("userid")
+ 	String pwd=request.getParameter("userpwd")
+ 	처리 DB 연결 회원확인 ...등등 ....
+ 	
+ 	
+ 	2.2 method="post"    Ex15_ok.jsp >> http 프로토콜 내부 header 영역에 데이터 숨겨서 ...
+ 	서버 페이지에서는  
+ 	String uid=request.getParameter("userid")
+ 	String pwd=request.getParameter("userpwd")
+ 	처리 DB 연결 회원확인 ...등등 ....
+ 	
+ 	그럼에서 배를 타고 가야되는 상황 ... 링크 
+ 	>> 게시판 글번 클릭 (상세보기)
+ 	>> boardDetail.jsp?boardid=100
+ 	<a href="boardDetail.jsp?id=100&cagegory=board>100번글</a>
+ 	   
+ 	동기식  : get, post
+ 	비동기식 : get ,post,put,delete ,patch   (의미를 부여) REST API    
+ 	
+ 	
+ 	POINT
+ 	운송수단
+ 	선장님 ... <input type="submit" value="전송하기">     Ex15_ok.jsp 주소 출발
+  	1. input type="submit"
+  	2. input type="image"  내부적으로 submit 기능
+  	3. input type="button" 모양 > onclick="call()"  > javascript 
+  	function call() { document.form.submit();  }
+  	
+  	<input type="reset" 입력값 초기화 태그를 빈값 ....
+  -->
+ 
+</body>
+</html>

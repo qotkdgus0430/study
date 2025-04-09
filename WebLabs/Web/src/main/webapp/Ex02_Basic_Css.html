@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		/* 
+			internal 방식 : 현재 page CSS 적용 : 유지보수 ... 별도의 파일
+		 */
+		 body {background-color: gray;}
+		 h3 {color:tomato;}
+		 
+	</style>
+	<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<!-- 
+	개발자가 알아야 할 지식 (CSS 적용방법)
+	
+	1. Inline   - by using the style attribute inside HTML elements
+    2. Internal - by using a <style> element in the <head> section
+    3. External - by using a <link> element to link to an external CSS file
+
+    Inline 태그 안쪽에 style 속성 사용 (연습이나 간단한 속성 적용)
+    Internal page 내에서만
+    External 외부 별도의 파일 :  Common.cs
+    
+ -->
+ 	<h3>inline 방식 (태그 안쪽)</h3>
+ 	<p style="background-color: red">문단태그에 CSS 적용하기</p>
+ 	<h3>internal 방식</h3>
+ 	<h3 style="color: green">나는 무슨색일까요 inline 우선</h3>
+ 	<h3>external 방식</h3>
+ 	<h1>외부 css 참조</h1>
+ 	
+ 	<h1>이미지 외부 파일 처리</h1>
+ 	<h3>웹상에에서 이미지 서버(파일) 직접 참조   AWS s3서버 구축</h3>
+ 	<hr>
+ 	<img src="https://www.baemin.com/_next/static/images/img-bike@2x.png">
+ 	<p>Do not forget to buy <mark>milk</mark> today.</p>
+</body>
+</html>

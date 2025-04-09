@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function print(){
+			let ele = document.getElementById("demo");
+			console.log(ele);
+			ele.innerHTML= "아 배고프다"; // div , p  value 속성 없어요 > 안쪽에 위치 (innerText , innerHTML)
+		}
+		/*
+		 문서가 실해되면 웹 브라우져에 메모리에 DOM tree  형태로 HTML 요소를 올려 놓아요
+		 단점: html 요소 메모리에 다 올리고 ... 장점: 접근 제어 편해요
+		 
+		 
+		 
+		 DOM
+		 
+		 html
+		   |
+	head       body
+	            |
+	            
+		 
+		*/
+	</script>
+</head>
+<body>
+		<button onclick="print()">클릭하세요</button>
+		<p id="demo">
+			demo 라는 id는 p 태그를 식별할 수 있는 값
+		</p>
+</body>
+</html>

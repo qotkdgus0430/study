@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>position 속성 예제</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 2000px;
+    }
+
+    h2 {
+      margin-top: 50px;
+    }
+
+    .box {
+      width: 200px;
+      height: 100px;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .static {
+      background: gray;
+      position: static;
+    }
+
+    .relative {
+      background: royalblue;
+      position: relative;
+      top: 20px;
+      left: 20px;
+    }
+
+    .absolute-container {
+      position: relative;
+      height: 150px;
+      background: #eee;
+      margin-bottom: 20px;
+    }
+
+    .absolute {
+      background: crimson;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .fixed {
+      background: green;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    .sticky-container {
+      height: 600px;
+      padding-top: 100px;
+      background: #fafafa;
+    }
+
+    .sticky {
+      background: orange;
+      position: sticky;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. static (기본값)</h2>
+  <div class="box static">static</div>
+
+  <h2>2. relative (자기 위치 기준)</h2>
+  <div class="box relative">relative</div>
+
+  <h2>3. absolute (부모 기준)</h2>
+  <div class="absolute-container">
+    <div class="box absolute">absolute</div>
+  </div>
+
+  <h2>4. fixed (브라우저 창 고정)</h2>
+  <div class="box fixed">fixed</div>
+
+  <h2>5. sticky (스크롤 시 고정)</h2>
+  <div class="sticky-container">
+    <div class="box sticky">sticky</div>
+    <p>스크롤하면 sticky 박스가 상단에 고정됩니다.</p>
+  </div>
+
+</body>
+</html>
+<!-- 
+static	(기본값) 문서 흐름에 따라 배치됨
+relative	자기 자신의 원래 위치를 기준으로 이동
+absolute	가장 가까운 위치 지정 부모를 기준으로 정확한 위치에 배치
+fixed	브라우저 창을 기준으로 고정 (스크롤해도 고정됨)
+sticky	스크롤 위치에 따라 relative → fixed로 변함 (헤더 고정에 유용)
+ -->
+

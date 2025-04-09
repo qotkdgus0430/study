@@ -1,0 +1,24 @@
+<%-- 추가: JSP 페이지 디렉티브를 추가하여 페이지의 언어, 콘텐츠 타입, 인코딩을 설정함 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="navi.css">
+</head>
+<body>
+<nav class="menu">
+    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+    <label class="menu-open-button" for="menu-open">
+      <span class="lines line-1"></span>
+      <span class="lines line-2"></span>
+      <span class="lines line-3"></span>
+    </label>
+    <a href="../main/Main_Page.html" class="menu-item blue"></a>
+    <a href="../login/login.html" class="menu-item green"></a>
+    <a href="../BSH1/index.html" class="menu-item red">배</a>
+    <a href="../profile_01/profile_jihun.html" class="menu-item purple">김</a>
+    <a href="#" class="menu-item orange">여</a>
+    <a href="#" class="menu-item lightblue">이</a>
+</nav>
+</body>

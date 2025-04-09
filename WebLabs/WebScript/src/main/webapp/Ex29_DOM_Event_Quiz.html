@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	window.onload = function(){
+			//문제 
+			/*
+			a click 이벤트를 동적으로 부여하시고 (addEvent...)
+			다음 >> images/2.jpg   다음 >> images/3.jpg   다음 >> images/4.jpg  다음 >> images/1.jpg
+			이전 >> images/4.jpg   이전 >> images/3.jpg
+			
+			카페에서 이미지 받으셔도 되고
+			FTP 에서 받으셔도 됩니다
+			*/
+			
+			let myPhotos=["images/1.jpg" , "images/2.jpg", "images/3.jpg" , "images/4.jpg"];
+			
+			let index = 0;//global 변수 (모든 함수에서 사용가능)
+			console.log("index : " + index);
+			
+			//prv click
+			document.getElementById("prv").addEventListener("click" , function(){  //익명함수
+				if(index == 0){
+					index = myPhotos.length;
+				}
+				 document.getElementById("imgs").src=myPhotos[--index];
+			});
+			
+			//next click
+			document.getElementById("next").addEventListener("click" , function(){  //익명함수
+				  if(++index == myPhotos.length){ //[0][1][2][3]
+					 index=0;  
+				  }  
+				  document.getElementById("imgs").src=myPhotos[index];
+			});
+	}
+	</script>
+</head>
+<body>
+	<h3>DOM 슬라이드</h3>
+	<img src="images/1.jpg" alt="이미지" id="imgs" width="200" height="200">
+	<hr>
+	<a href="#" id="prv">이전</a>||<a href="#" id="next">다음</a>
+</body>
+</html>

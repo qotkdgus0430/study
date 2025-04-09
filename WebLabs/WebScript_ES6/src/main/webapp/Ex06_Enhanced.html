@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+	/*  
+		ES6 
+		향상된 객체 리터럴 
+		(Enhanced Object Literal) : JSON
+		>> 객체 표기를 좀더 간결하게 표현
+	*/
+		const dataObj = {
+				language:"javascript",
+				coding:function(){
+					console.log(this.language + " coding");
+				}
+				
+		};
+		
+		//객체를 생성하다 보면
+		const language="java";
+		const dataObj2 = {language}  //{key:value} 같다고 판다 ^^
+		console.log(dataObj2);
+		
+		//const dataObj2 = {language}  풀어쓰면 아래와 같다
+		//const dataObj2 = {language:language} //.... key 와 value 이름이 같다면 생략 가능 ......
+		
+		//Vue 같은 곳에서 사용
+		
+		//축약문법2
+		const dataObj3 = {
+				coding:function(){
+					console.log("hello world coding");
+				}
+		}
+		
+		dataObj3.coding();
+		
+		//축약하면
+		const dataObj4 = {
+				coding(){   //객체에서 함수 축약표현이 가능하다
+					console.log("hello world coding");
+				}
+		}
+		dataObj4.coding();
+	</script>
+</head>
+<body>
+
+</body>
+</html>

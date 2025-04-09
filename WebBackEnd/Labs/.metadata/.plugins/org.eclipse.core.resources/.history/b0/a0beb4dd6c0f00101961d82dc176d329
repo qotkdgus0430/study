@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	/*
+		응답 (서버 > 클라이언트)
+		<%=	혼합코드 >> 서버자원 + 정적자원(html + css)(자동완성 기능)
+		
+		out 객체 사용 (UI 자원 문자열 처리)
+	*/
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>스파게티 코드 (UI)</h3>
+	<%
+		boolean b = true;
+		if(10 > 5){
+	%>
+		if(true)<font color="red"><%=b%></font>
+	<%		
+		}else{
+			b = false;
+	%>
+		if(false)<font color="blue"><%=b%></font>
+	<%
+		}
+	%>
+</body>
+</html>

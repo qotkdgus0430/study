@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album CRUD with JSONPlaceholder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 40px;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .albums-list {
+            width: 80%;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .album-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .album-card button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .album-card button:hover {
+            background-color: #e53935;
+        }
+
+        .album-card p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Album CRUD Operations</h1>
+
+        <!-- Fetch button to load albums -->
+        <button id="fetchButton" class="button">Fetch Albums</button>
+
+        <!-- Create new album form -->
+        <div class="form-container">
+            <h3>Create New Album</h3>
+            <form id="createForm">
+                <input type="number" id="userId" placeholder="User ID" required>
+                <input type="text" id="title" placeholder="Album Title" required>
+                <button type="submit" class="button">Create Album</button>
+            </form>
+        </div>
+
+        <!-- Update album form -->
+        <div class="form-container">
+            <h3>Update Album</h3>
+            <form id="updateForm">
+                <input type="number" id="albumId" placeholder="Album ID" required>
+                <input type="text" id="newTitle" placeholder="New Album Title" required>
+                <button type="submit" class="button">Update Album</button>
+            </form>
+        </div>
+
+        <!-- Delete album form -->
+        <div class="form-container">
+            <h3>Delete Album</h3>
+            <form id="deleteForm">
+                <input type="number" id="deleteId" placeholder="Album ID to Delete" required>
+                <button type="submit" class="button">Delete Album</button>
+            </form>
+        </div>
+
+        <!-- Display fetched albums -->
+        <div id="albumsList" class="albums-list"></div>
+    </div>
+
+    <script>
+        const API_URL = 'https://jsonplaceholder.typicode.com/albums';
+
+        async function fetchAlbums() {
+            try {
+                const response = await fetch(API_URL);
+                const albums = await response.json();
+                displayAlbums(albums);
+            } catch (error) {
+                console.error('Error fetching albums:', error);
+            }
+        }
+
+        function displayAlbums(albums) {
+            const albumsList = document.getElementById('albumsList');
+            albumsList.innerHTML = ''; // Clear previous list
+            albums.forEach(album => {
+                const albumCard = document.createElement('div');
+                albumCard.classList.add('album-card');
+                albumCard.innerHTML = `
+                    <h4>Album #${album.id}</h4>
+                    <p><strong>User ID:</strong> ${album.userId}</p>
+                    <p><strong>Title:</strong> ${album.title}</p>
+                    <button onclick="deleteAlbum(${album.id})">Delete</button>
+                `;
+                albumsList.appendChild(albumCard);
+            });
+        }
+
+        // Create a new album
+        document.getElementById('createForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userId = document.getElementById('userId').value;
+            const title = document.getElementById('title').value;
+            const newAlbum = { userId: Number(userId), title: title };
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(newAlbum),
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                const createdAlbum = await response.json();
+                alert('Album Created: ' + JSON.stringify(createdAlbum));
+                fetchAlbums();
+            } catch (error) {
+                console.error('Error creating album:', error);
+            }
+        });
+
+        // Update an album
+        document.getElementById('updateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const albumId = document.getElementById('albumId').value;
+            const newTitle = document.getElementById('newTitle').value;
+            const updatedAlbum = { title: newTitle };
+            try {
+                const response = await fetch(`${API_URL}/${albumId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(updatedAlbum),
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                const album = await response.json();
+                alert('Album Updated: ' + JSON.stringify(album));
+                fetchAlbums();
+            } catch (error) {
+                console.error('Error updating album:', error);
+            }
+        });
+
+        // Delete an album
+        async function deleteAlbum(id) {
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'DELETE',
+                });
+                if (response.ok) {
+                    alert('Album Deleted');
+                    fetchAlbums(); // Refresh album list
+                }
+            } catch (error) {
+                console.error('Error deleting album:', error);
+            }
+        }
+
+        // Fetch albums when the page loads
+        document.getElementById('fetchButton').addEventListener('click', fetchAlbums);
+    </script>
+
+</body>
+</html>

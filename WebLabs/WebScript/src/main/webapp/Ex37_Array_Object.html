@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+	let array=['포도','사과'];
+	console.log(array.toString()); //toString() 재정의 출력결과 얻기
+	console.log(array + "default toString() 생략");
+	
+	for(let i = 0; i < array.length ;i++){
+		console.log(array[i]);
+	}
+	
+	for(let index in array){
+		console.log(array[index]);
+	}
+	
+	for(let value of array){
+		console.log(value);
+	}
+	
+	//['포도','사과']  > [0][1]
+	array[2]="바나나"; //가능
+	console.log(array.toString() + " / " + array.length);
+	
+	//['포도','사과','바나나']
+	//권장하지는 않지만 가능
+	array[10] ="애플망고"; //bad 한 방법
+	console.log(array.toString() + " / " + array.length);
+	
+	
+	console.log(array[9] + ">> array[9]");
+	array[9]="배";
+	console.log(array[9] + "after ... array[9]");
+	
+	//let arr = []   , arr.push() . arr.pop()
+	
+	let array2 = ["one" , "two" , "three"];
+	array2.length = 2; //권장하지 않음  줄이는 것도 가능
+	console.log(array2 + "----" + array2.length);
+	array2.length=10; // 줄이는 것도 가능 , 늘리는 것도 가능 (가능하면 쓰지 말기)
+	
+	//권장 방법
+	let array3 =[];
+	array3.push("aa");
+	array3.push("bb");
+	
+	console.log(array3.pop());
+	
+	
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			//body 안에 있는 모든 요소가 loading 되고 난 후에
+			//함수 실행..
+			
+			//DOM  계층트리 : node (부모 , 자식 , 형제 개념)
+			//DOM 요소 제어 : <div id="div"></div> >> id 속성
+			
+			let menode;
+			menode = document.getElementById("me");
+			menode.style.backgroundColor = "gold";
+				
+			let parentNode = menode.parentNode; //body
+			parentNode.style.backgroundColor = "blue";
+			
+			let grandNode = parentNode.parentNode; //html
+			grandNode.style.backgroundColor = "green";
+			
+			let my = document.getElementById("mychild");
+			console.log(my);
+			console.log(my.firstChild.nodeName); //LI 대문자 
+			console.log(my.firstChild.innerText); //AA
+			
+			//** value 속성이 없는 친구들 > div , p , li , span
+			//innerHTML , innerText 사용해서 접근  > ex) <div>방가방가<div>
+			console.log(my.firstChild.nextSibling.innerText); //BB
+			
+			console.log(my.hasChildNodes);
+			console.log(my.childNodes);
+			//childNodes  녀석이 return Array
+			//[<li>AA</li>] [<li>BB</li>] [<li>CC</li>]
+			//    0               1             2
+			console.log(my.childNodes[0]);
+			console.log(my.childNodes.length);
+			
+			//태그는  select , ol , ul  안쪽에 여러개의 요소를 가질 수 있다
+			//option , li , li  (Array 요소)
+		}
+	</script>
+</head>
+<body>
+	<div>A</div><div>B</div><div id="me">C</div><div>D</div><div>E</div>
+    <ul id="mychild"><li>AA</li><li>BB</li><li>CC</li></ul>
+</body>
+</html>

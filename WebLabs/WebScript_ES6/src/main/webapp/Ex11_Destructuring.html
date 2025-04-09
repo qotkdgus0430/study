@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*
+			Destructuring
+			ES6 구조 분해 할당
+			
+			javascript 배열 할당 ......
+			
+		
+		*/
+		const arr = [1,2,3,4];
+		const obj = {
+				a:10,
+				b:20,
+				c:30
+		}
+		
+		const { a, b, c } =obj;
+		//a > 10
+		console.log(a);
+		console.log(b);
+		console.log(c);
+		
+		const smith = {
+			lang:"javascript",
+			position:'font-end',
+			area:"kangnam",
+			hobby:"baseball",
+			age:90
+		};
+		
+		//구조분해 할당
+		const {lang,position,area,hobby,age} =smith;
+		
+		console.log(lang);
+		console.log(position);
+		console.log(area);
+		
+		//배열
+		const numbers = [11,22,33];
+		const [first,second,third] = numbers;
+		console.log(first);
+		
+		const number3 = [1,2,3,4,5];
+		const [,,third3,fourth3] = number3;
+		console.log(third3);
+		console.log(fourth3);
+		
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

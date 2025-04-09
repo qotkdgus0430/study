@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		.democlass {color: red;}
+	</style>
+</head>
+<body>
+	<div id="div">
+		<h1 class="democlass">Hello world_1</h1>
+		<h1 class="democlass">Hello world_2</h1>
+		<h1 class="democlass">Hello world_3</h1>
+	</div>
+</body>
+<script type="text/javascript">
+		//document.getElementsByTagName("h1")[0].removeAttribute('class');
+		
+		/*
+		특정 속성을 제거 ....
+		let harray = document.getElementsByTagName("h1");
+		console.log(harray); //배열
+		for(let i = 0 ; i < harray.length ; i++){
+			console.log(harray.length);
+			harray[i].removeAttribute('class');
+		}
+		*/
+		/*
+		문제 : 삭제되지 않는 태그 있어요 ...
+		let array = document.getElementsByTagName("h1");
+		for(let index in array){
+			console.log(array[index]); //h1 
+			console.log("index : " + index + " -length : " + array.length);
+			document.getElementById("div").removeChild(array[index]);
+		}
+		*/
+		/*
+			삭제순서 0 -> 1 -> 2
+			Hello World_2 남아있네
+		
+			[0]                [1]                   [2]
+			Hello world_1      Hello world_2         Hello world_3
+			
+			삭제[0] 동적배열 (ArrayList)
+			
+			[0]                [1]
+			Hello world_2      Hello world_3
+			
+			삭제[1] 삭제
+			[0]                
+			Hello world_2   
+			
+			//모두 지워지게 수정
+			
+			
+			[0][1][2]  >> [2]삭제
+			[0][1]     >> [1]삭제
+			[0]        >> [0]삭제
+		
+			[2] -> [1] -> [0]	
+		*/
+		
+		/*
+		삭제 성공
+		let array = document.getElementsByTagName("h1");
+		for(let index in array){
+			console.log(array[index]); //h1 
+			console.log("index : " + index + " -length : " + array.length);
+			if(array.length > 0){
+				document.getElementById("div").removeChild(array[array.length -1]);
+			}
+		}
+		*/
+		
+		let arr = document.getElementsByTagName("h1");
+		let len = arr.length; //3
+		for(let i = 0 ; i < len ; i++){ //3번 반복
+			//remove() 자기자신 삭제
+			arr[arr.length -1].remove();
+		}
+</script>
+</html>

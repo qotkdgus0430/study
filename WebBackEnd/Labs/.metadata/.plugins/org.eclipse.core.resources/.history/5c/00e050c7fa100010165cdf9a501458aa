@@ -1,0 +1,36 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="DTO.Emp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+	Emp emp = new Emp(2000,"kosauser");
+	
+	//1. 방법 : request 객체 또는 session 에 담아서 사용 : GOOD
+	request.setAttribute("e", emp);
+
+	HashMap<String,String> hp = new HashMap<>();
+	hp.put("data", "1004");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>기존방식</h3>
+	<%=emp%><br>
+	<%=emp.getEmpno()%><br>
+	<%=emp.getEname() %><br>
+	
+	<h3>EL</h3>
+	EL() : 자바 객체 출력(자바 객체에 직접 접근 불가): ${emp}<br>
+	
+	<h3>해결사 </h3>
+	1. 방법 : request 객체 또는 session 에 담아서 사용 : GOOD<br>
+	EL: ${requestScope.e}<br>
+	EL: ${e.empno}<br> <!-- 내부적으로 getEmpno 자동 호출 -->
+	EL: ${requestScope.e.empno}<br>
+</body>
+</html>

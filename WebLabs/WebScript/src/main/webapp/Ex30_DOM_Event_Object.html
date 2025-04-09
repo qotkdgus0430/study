@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		
+		/*
+			JAVA 예외처리
+			
+			try{
+				 0/0 >   예외가 발생 >> [ 예외에 맞는 객체가 자동 생성 ] new Div.. >> 객체 예외 문제 메시지 담기고
+			}catch(Exeception e) { //모든 예외 부모인 e변수가 객체의 주소를 받는다
+				
+				//e.getMessage
+				
+			}
+			
+			...............
+			javaScript > 사건이 발생 (click , mouseover , mouseout) > 내부적으로 >[ event 정보를 담고 있는 객체 생성 ]
+			Event 객체 > 사건의 진실(발생 ,주체 , 영향 , 정보) 생성된 객체를 받아서 사용만 하면 된다
+			
+			window.event.메서드 제공
+			window.enven.속성 제공
+			
+			KEY EVENT : Event  객체가 제공하는 함수와 속성을 이용해서 .... 제어하자
+		*/
+		window.onload = function(){
+			let btn = document.getElementById("mybtn");
+			btn.onclick = function(e){ //e 변수 Click 이벤트가 발생했을때 생성된 Event 객체의 주소를 받음
+				  console.log(e.type); //속성 이벤트의 종류 click , mouseover 인지 판단  
+				  console.log(e.target); //<span>눌러봐</span> 
+				  console.log(e.currentTarget); //<button id="mybtn"><span>눌러봐</span></button>
+				  console.log(e.x);
+				  console.log(e.y);
+				  
+				  //간단하게 target 이벤트가 발생한 바로 그 요소를 직접 가르키는 것
+				  //currentTarget 이벤트 [리너스]를 가지고 있는 요소 
+			}
+			
+			let btn2 = document.getElementById("mybtn2");
+			let handler = function(event){
+				switch(event.type){
+				  case "click" : alert("클릭");
+				  	break;
+				  case "mouseover": event.target.style.backgroundColor="red";	
+				    break;
+				  case "mouseout":event.target.style.backgroundColor="";
+				    break;
+				}
+			}
+			
+			btn2.onclick= handler;
+			btn2.onmouseover= handler;
+			btn2.onmouseout = handler;
+			
+			/*
+			  btn2.onclick = function(event) {};
+			  btn2.onmouseover = function(event) {};
+			  btn2.onmouseout = function(event) {};
+			*/
+		}
+		
+	</script>
+</head>
+<body>
+		<button id="mybtn"><span>눌러봐</span></button>
+		<br>
+		<button id="mybtn2">눌러봐2</button>
+</body>
+</html>

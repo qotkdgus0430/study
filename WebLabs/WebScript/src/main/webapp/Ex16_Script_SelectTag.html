@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function eventProductor(frm){
+			console.log(frm);
+			console.log(frm.productor.value); //선택되어진 option 태그 value
+			//고민
+			console.log(frm.productor.text); //undefined text 찿지 못해요
+			//select 태그 여러개의  option 가지고 있다 (option 배열 ...)
+			console.log("index : " + frm.productor.selectedIndex);
+			//select [option][option][option][option]
+			console.log(frm.productor.options[0].value);
+			console.log(frm.productor.options[0].text);
+			
+			let index = frm.productor.selectedIndex;
+			let text = frm.productor.options[index].text // POINT
+			let value = frm.productor.options[index].value //POINT
+			
+			if(index == 0){
+				frm.valProductor.value="";
+				frm.txtProductor.value="";
+			}else{
+				frm.valProductor.value=value;
+				frm.txtProductor.value=text;
+			}
+		}
+	</script>
+</head>
+<body>
+모델별 최저가 검색
+	<br>
+	<form name="frmdata">
+		<select style="width: 200px" name="productor" onchange="eventProductor(this.form)">
+			<option value="A000" selected>제조사</option>
+			<option value="A001">삼성전자</option>
+			<option value="A002">LG전자</option>
+			<option value="A003">Apple</option>
+			<option value="A004">Dell</option>
+		</select> 
+			<input type="text" name="valProductor" size="10"> 
+			<input type="text" name="txtProductor" size="10"> <br>
+	</form>
+</body>
+</html>

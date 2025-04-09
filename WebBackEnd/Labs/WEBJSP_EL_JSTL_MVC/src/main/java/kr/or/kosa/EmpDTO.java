@@ -1,0 +1,20 @@
+package kr.or.kosa;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class EmpDTO {
+    private int empno;
+    private String ename;
+    private String job;
+    private int mgr;
+    private Date hiredate;
+    private double sal;
+    private double comm;
+    private int deptno;
+    
+    // getter/setter 전부 생략 없이 만들어야 함
+    // 예: getEmpno(), setEmpno(), ...
+}

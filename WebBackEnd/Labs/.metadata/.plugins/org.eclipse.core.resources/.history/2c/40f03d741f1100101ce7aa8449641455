@@ -1,0 +1,47 @@
+package kr.or.kosa;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmpDAO {
+	
+    private static EmpDAO instance = new EmpDAO();
+    public static EmpDAO getInstance() { return instance; }
+
+    private Connection getConnection() throws Exception {
+        Class.forName("oracle.jdbc.OracleDriver");
+        return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kosa", "1004");
+    }
+
+    public List<EmpDTO> getAllEmps() {
+        List<EmpDTO> list = new ArrayList<>();
+        String sql = "SELECT * FROM EMP";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                EmpDTO emp = new EmpDTO();
+                emp.setEmpno(rs.getInt("EMPNO"));
+                emp.setEname(rs.getString("ENAME"));
+                emp.setJob(rs.getString("JOB"));
+                emp.setMgr(rs.getInt("MGR"));
+                emp.setHiredate(rs.getDate("HIREDATE"));
+                emp.setSal(rs.getDouble("SAL"));
+                emp.setComm(rs.getDouble("COMM"));
+                emp.setDeptno(rs.getInt("DEPTNO"));
+                list.add(emp);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+}

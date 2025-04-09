@@ -1,0 +1,51 @@
+package com.board;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+/*
+@WebServlet 어노테이션 web.xml > <url-pattern>simple</url-pattern> 동일한 결과
+
+현재 개발은 어노테이션을 기반으로 한 JAVA 설정 일반
+유지보수 : web.xml 파일 설정 변경 .... 이해 필요하다 ...
+
+http://localhost:8090/Board 요청이 오면
+
+FrontBoardController 컴파일되고 실행된다
+
+FrontBoardController.java -> FrontBoardController.class -> 실행 (요청의 의한 특정 함수 실행)
+-> GET , POST 요청 -> doGet() 실행 아니면 doPost()
+
+doGet(HttpServletRequest request , HttpServletResponse
+
+ */
+
+@WebServlet(
+				description = "게시판 Front 역할을 하는 servlet 입니다",
+				urlPatterns = {"/Board"}
+		   )
+public class FrontBoardController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+    public FrontBoardController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

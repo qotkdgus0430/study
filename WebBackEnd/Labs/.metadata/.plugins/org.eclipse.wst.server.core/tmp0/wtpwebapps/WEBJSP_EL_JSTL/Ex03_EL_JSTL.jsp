@@ -1,0 +1,82 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="DTO.Emp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
+<%
+	Emp emp = new Emp(2000,"kosauser");
+	
+	//1. 방법 : request 객체 또는 session 에 담아서 사용 : GOOD
+	request.setAttribute("e", emp);
+
+	HashMap<String,String> hp = new HashMap<>();
+	hp.put("data", "1004");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>기존방식</h3>
+	<%=emp%><br>
+	<%=emp.getEmpno()%><br>
+	<%=emp.getEname() %><br>
+	
+	<h3>EL</h3>
+	EL() : 자바 객체 출력(자바 객체에 직접 접근 불가): ${emp}<br>
+	
+	<h3>해결사 </h3>
+	1. 방법 : request 객체 또는 session 에 담아서 사용 : GOOD<br>
+	EL: ${requestScope.e}<br>
+	EL: ${e.empno}<br> <!-- 내부적으로 getEmpno 자동 호출 -->
+	EL: ${requestScope.e.empno}<br>
+	
+	2.JSTL 사용<br>
+	<!-- 
+		JSP Standard Tag Library의 약자로 JSP 표준 라이브러리이다.
+		: JSP에서 자주 사용하는 기능(반복문과 조건문, 데이터 표현 등)을 미리 구현해 놓은 커스텀 태그 라이브러리 모음이다.
+		: JSTL은 EL을 사용하여 표현한다.
+	
+		Apache 재단에서 진행하는 custom tag library 프로젝트
+		– 스크립트 릿으로 작성해야할 로직을 태그로 대신 처리 가능
+		– apache에서 다운받아 lib에 추가.
+		- 메이븐 저장소에서 검색해서 받아서 사용
+   -->
+	<h3>JSTL (core) : 변수 , 제어문 (자바코드 없이) : 서버에서 실행</h3>
+	<c:set var="m" value="<%=emp%>"></c:set>	
+	<br>
+	JSTL 사용해서 변수 m 을 생성 (EL 사용해서 접근 가능) : ${m}<br>
+	getter  함수 사용 (권장하지 않아요):  ${m.getEmpno()}<br>
+	
+	EL출력(m.memberfield명 : 자동 getter 함수 호출) : ${m.empno}<br>
+	EL출력(m.memberfield명 : 자동 getter 함수 호출) : ${m.ename}<br>
+	
+	<hr>
+	<h3>JSTL 변수 만들고  scope 정의 하고</h3>
+	<c:set var="job" value="농구선수" scope="request"></c:set>
+	당신의 직업은 : ${job}<br>
+	만약에 당신이 include , forward 를 사용한다면 그 페이지에서도 job 값을 출력할 수 있다
+	<br>
+	<c:set var="job2" value="야구선수"></c:set>
+	값출력: ${job2}<br>
+	
+	<hr>
+	JAVA API 활용한 객체 EL 직접 접근 불가능 :${hp}<br>
+	******* 권장방법 : JAVA 객체를 EL 사용하고 싶다면 : request , session 담아서 사용<br>
+	** JSTL c:set 
+	<hr>
+	<c:set var="vhp" value="<%=hp%>"></c:set>
+	hp객체: ${vhp}<br>
+	hp객체: ${vhp.data}<br>
+	
+	<hr>
+	JSTL 사용 값을 write 가능 (사용하지 마세요)<br>
+	<c:set  target="${vhp}" property="color" value="red"></c:set>
+	hp 객체 : ${vhp}<br>
+	
+	
+</body>
+</html>

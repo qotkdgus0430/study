@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		.box-fixed {
+				  width: 800px;
+				  background: lightblue;
+		}
+
+		.box-max {
+		  		max-width: 800px; /* 최대값 800까지 허용 */
+		  		width: 100%;
+		  		background: lightgreen;
+		}
+		
+	</style>
+</head>
+<body>
+
+<div class="box-fixed">고정 너비 800px</div>
+<div class="box-max">최대 너비 800px</div>
+
+</body>
+</html>
+<!-- 
+ CSS의 max-width는 요소가 가질 수 있는 최대 너비를 제한할 때 사용하는 속성
+ 800px을 초과하지 않는 범위 내에서만 너비를 가질 수 있어요.
+ 너비가 800px보다 작을 수는 있지만 800px보다 클 수는 없습니다.
+ 
+.box-fixed는 항상 800px
+.box-max는 부모가 600px이면 600px로 줄어들고, 최대 800px까지만 커짐
+ -->

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){  //무조건 써야 하는 것이 아니고 ..body 안에 요소가 로딩되고 난 후에 ...
+			//https://api.jquery.com/category/selectors/
+			//안에 샘플 예제 돌려보고 활용 .... 좋다
+			
+			$('body > *').css('color',"gold"); //자식 선택자
+			$('div > *').css('color','red');
+			$('input[type=text]').css('color','green'); //속성 선택자
+			
+			/*
+			 DOM script : innerHTML , innerText (value 속성이 없는 태그안쪽 : div, p , span)
+			 input 태그 종류 (value 가지고 있어요)  document.getElementById("name").value
+			
+			 Jquery  3총사
+			 val() , text() , html()  >> 값을 read , write >> getter , setter 역할
+			 
+			 val('홍길동') > write(setter)
+			 val() > read(getter)
+			
+			 jquery  를 사용 (태그 id 속성)
+			 <input type="text" id="userid" name="userid" value="hello">
+			 
+			 $('#userid').val() > hello 
+			 $('#userid').val("world") > input 태그 value > value="world"
+			 
+			*/
+			
+			//read DOM 객체에 [처음 만나는 요소] read 
+			//write DOM 객체에 있는 모든 input[type=text] write
+			console.log($('input[type=text]').val()); 
+			
+			 $('input[type=text]').val("1111"); //모든 해당 요소에 적용
+			 
+			//jquery 하고요 javascript  혼합 사용 (당근 가능하지요  jquery 도 javascript )
+			 setTimeout(() => {
+				const value = $('select > option:selected').val();
+				alert("select tag value : " + value);
+			}, 3000);
+			
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>사과</li>
+			<li>배</li>
+			<li>수박</li>
+		</ul>
+	</div>
+	<div>
+		<ul>
+			<li>사과2</li>
+			<li>배2</li>
+			<li>수박2</li>
+		</ul>
+	</div>
+	<input type="text" value="AAA">
+	<input type="text" value="BBB">
+	<input type="text" value="CCC">
+	<input type="password">
+	<input type="radio">
+	<input type="file">
+	<hr>
+	<table>
+		<tr>
+			<td>이름</td>
+			<td>나이</td>
+			<td>취미</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>50</td>
+			<td>훔치기</td>
+		</tr>
+		<tr>
+			<td>이순신</td>
+			<td>10</td>
+			<td>싸움</td>
+		</tr>
+		<tr>
+			<td>학생</td>
+			<td>30</td>
+			<td>잠자기</td>
+		</tr>
+	</table>
+	<hr>
+	<select>
+		<option>농구</option>
+		<option>축구</option>
+		<option>야구</option>
+		<option>배구</option>
+	</select>	
+</body>
+</html>
