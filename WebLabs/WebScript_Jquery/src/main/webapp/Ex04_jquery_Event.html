@@ -1,10 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	   //$(document).ready(function(){
+		   
+	   //});
+	   $(function(){  //$(document).ready(function(){ 동일해요
+		   //onload
+		   
+		   $('#btncopy').click(function(){
+			    //const data = $('#txtuserid').val();
+			    //$('#txtcopyuserid').val(data);
+			    $('#txtcopyuserid').val($('#txtuserid').val());
+		   });
+		   
+		   $('#select_hobby').change(function(){
+				const text = $(':selected').text();
+				console.log(text);
+				
+				const text2 = $('#select_hobby option:selected').text(); //select태그 여러개 있어도
+				console.log(text2);
+				
+				//값 read
+				const value = $('#select_hobby').val(); // 만약 value 값이 없으면 text value 대신 
+				console.log(value);
+		   });	
+		   
+		   $('#txtpwd2').keyup(function(){
+				if($('#txtpwd').val() != $('#txtpwd2').val()){
+					$('#message').html('<h3>암호가 일치하지 않아요</h3>');
+				}else{
+					$('#message').html('<h3>암호가 일치합니다</h3>');
+				}
+		   });
+		   
+		 //body 안에 있는 모든 input 태그  focus가 (커서) 들어오면 input에 background-color gray
+		 //body 안에 있는 모든 input 태그  blur가 (커서) 떠나면 input에 background-color white
+		 
+			 $('input').focus(function(){  //모든 input 요소
+				 $(this).css('background-color','gray');
+			 });
+		 
+			 $('input').blur(function(){
+				 $(this).css('background-color','white');
+			 });
+			 
+		  //전원스위치 (토글) : on off 이벤트
+		  //toggle (funcion(){} , function(){})
+			
+		  $('p').hover(function(){
+			  $(this).css('background-color','gold');			
+		  }, function(){
+			  $(this).css('background-color','red');		
+		  });
+		  
+		  
+		  
+			
+	   });
+	</script>
 </head>
 <body>
-
+	<p>Jquery hover(mouseover , mouseleave)</p>
+	
+	ID:<input type="text" id="txtuserid">
+	<hr>
+	<input type="button" id="btncopy" value="copy">
+	<hr>
+	Copy ID:<input type="text" id="txtcopyuserid">
+	
+	<hr>
+	<select id="select_hobby">
+		<option value="JAVA">java</option>
+		<option value="SCRIPT">script</option>
+		<option>jdbc</option>
+	</select>
+	<br>
+	<input type="text" id="txtselect">
+	<hr>
+	<table style="border: 1px solid red;">
+		<tr>
+			<td>암호</td>
+			<td>
+				<input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
+		</tr>
+		<tr>
+			<td>암호확인</td>
+			<td>
+				<input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
+		</tr>
+	</table>
+	<div id="message" style="color: red"></div>
 </body>
 </html>

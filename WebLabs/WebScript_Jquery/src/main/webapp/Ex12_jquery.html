@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//$(function(){
+			
+		//});
+		//위 코드를 사용하지 않아요 당근  jquery 사용 가능 
+		
+		function scriptFunction(){
+			let arrayObj = [];
+			
+			/*
+			테이블안에서 데이터 추출
+			101th 홍길동 10
+			102th 김유신 20
+			103th 유관순 30
+			*/
+			
+			console.log($('table > tbody > tr')); //tr Array 
+			//[<tr><td>101th</td>...</tr>][][]
+			
+			$('table > tbody > tr').each(function(index, element){
+				console.log(element);
+				console.log($(element).children().eq(0).text());
+				
+				arrayObj.push(
+					{
+						th:$(element).children().eq(0).text(),
+						name:$(element).children().eq(1).text(),
+						age:$(element).children().eq(2).text()
+					}		
+				);
+				console.log(arrayObj);
+			});
+			
+			
+			//1. arrayObj 순수한 javascript  for(일반 for)을 사용해서 출력 
+			let output="";
+			for(let i = 0 ; i < arrayObj.length ; i++ ){
+				output += arrayObj[i].th + ","+
+				          arrayObj[i].name + ","+
+				          arrayObj[i].age+"<br>";
+			}
+			//$('#display').append(output);
+			//2. arrayObj 순수한 javascript  for(개선된 for)을 사용해서 display 에  append
+			output="";
+			for(let index in arrayObj){
+				output += arrayObj[index].th + ","+
+		                  arrayObj[index].name + ","+
+		                  arrayObj[index].age+"<br>";
+			}
+			$('#display').append(output);
+			//3. arrayObj jquery each()  사용해서 display2 에 append 시키세요
+			$.each(arrayObj , function(index, obj){
+				$('#display2').append(obj.th + "," + obj.name + ","+obj.age + "<br>");
+			});
+		}
+	</script>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td>기수</td><td>이름</td><td>번호</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>101th</td><td>홍길동</td><td>10</td>
+			</tr>
+			<tr>
+				<td>102th</td><td>김유신</td><td>20</td>
+			</tr>
+			<tr>
+				<td>103th</td><td>유관순</td><td>30</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<button onclick="scriptFunction()">함수호출</button>
+	</p>
+	<div id="display"></div>
+	<div id="display2"></div>
+</body>
+</html>
