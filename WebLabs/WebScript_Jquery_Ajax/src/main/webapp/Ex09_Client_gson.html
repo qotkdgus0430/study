@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Employee List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#btn').click(function(){
+        $.ajax({
+          url: "http://192.168.4.97:8090/WebScript_Jquery_Ajax/Ex09_GSON.jsp",
+          type: "GET",
+          dataType: "JSON",
+          success: function(employees){
+            // 테이블의 헤더와 시작 태그 작성
+            var output = "<table border='1' cellspacing='0' cellpadding='5'>";
+            output += "<thead><tr><th>사번</th><th>이름</th><th>급여</th><th>직무</th><th>커미션</th></tr></thead>";
+            output += "<tbody>";
+            
+            // 받은 JSON 데이터(employees 배열)의 각 요소에 대해 테이블 행 추가
+            $.each(employees, function(index, employee){
+              output += "<tr>";
+              output += "<td>" + employee.empno + "</td>";
+              output += "<td>" + employee.ename + "</td>";
+              output += "<td>" + employee.sal + "</td>";
+              output += "<td>" + employee.job + "</td>";
+              output += "<td>" + employee.comm + "</td>";
+              output += "</tr>";
+            });
+            
+            output += "</tbody></table>";
+            
+            // result 영역에 만들어진 테이블 출력
+            $('#result').html(output);
+          },
+          error: function(xhr){
+            $('#result').html("에러 발생: " + xhr.status);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="btn">emplist</button>
+  <div id="result"></div>
+</body>
+</html>
